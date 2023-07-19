@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_x_practicee/resources/language/getx_loca.dart';
 import 'package:get_x_practicee/resources/routes/routes.dart';
+import 'package:get_x_practicee/views/login_View.dart';
 import 'package:get_x_practicee/views/splash_View.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.blueGrey[50],
+        scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.indigo,
           primary: Colors.indigo,
@@ -26,10 +28,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: GoogleFonts.robotoTextTheme(),
       ),
-      locale: Locale('en', 'US'),
-      fallbackLocale: Locale('en', 'US'),
+      locale: const Locale('en', 'US'),
+      fallbackLocale: const Locale('en', 'US'),
       translations: LanguageGetx(),
-      home: SplashView(),
+      home: LoginView(),
       getPages: AppRoutes.appRoutes(),
     );
   }

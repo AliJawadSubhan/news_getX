@@ -30,15 +30,16 @@ class NetworkApiService extends BaseApiServices {
       final response = await https
           .post(
             Uri.parse(url),
-            body: jsonEncode(data),
+            body: data,
           )
           .timeout(const Duration(seconds: 12));
       responseJson = returnResopnse(response);
     } on SocketException {
       throw InternetException('Your wifi is bad.');
-    } on TimeOutExceptions {
-      throw TimeOutExceptions('Time out ');
+    } on TimeoutException {
+      throw TimeOutExceptions('Time out');
     }
+    log(responseJson.toString());
     return responseJson;
   }
 
@@ -48,10 +49,9 @@ class NetworkApiService extends BaseApiServices {
         dynamic responseJson = jsonDecode(response.body);
         return responseJson;
       case 400:
-        throw InvalidUrl;
+        throw InvalidUrl('Bro what');
       default:
-        throw FetchDataException(
-            'Error communicating ' + response.statusCode.toString());
+        throw FetchDataException('Error communicating ${response.statusCode}');
     }
   }
 }
